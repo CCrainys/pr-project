@@ -24,7 +24,7 @@ def load_result(str1,str2):
 def load_parameter(args): #载入参数
     num = args.num
     stop_word = args.if_stop_word
-    word_to_vector = args.word_to_vector
+    #word_to_vector = args.word_to_vector
     seq_len = args.seq_len
     word_dim = args.word_dim
     num_filters = args.num_filters
@@ -34,7 +34,7 @@ def load_parameter(args): #载入参数
     filter_size = args.filter_size.split(',')
     batch_size = args.batch_size
     epoch = args.epoch
-    return num,stop_word,word_to_vector,seq_len,word_dim,num_filters,l2_num,learning_rate,dropout_conv,filter_size, batch_size,epoch
+    return num,stop_word,seq_len,word_dim,num_filters,l2_num,learning_rate,dropout_conv,filter_size, batch_size,epoch
 
 
 def load_data(path): #载入数据

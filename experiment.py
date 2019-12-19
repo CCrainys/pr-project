@@ -12,9 +12,9 @@ import numpy
 
 parser = argparse.ArgumentParser(description='manual to this script')#传入参数 ，包括数据集数量、是否使用停用词、词向量模型、句子长度、词向量维度、卷积核数量、学习率、drop_out率、不同种类卷积核大小、batch_size,epoch
 
-parser.add_argument('--num', type=int, default = 1000)
+parser.add_argument('--num', type=int, default = 10000)
 parser.add_argument('--if_stop_word', type=int, default = 0)
-parser.add_argument('--word_to_vector', type=str, default = 'Word2VecModel')
+#sparser.add_argument('--word_to_vector', type=str, default = 'Word2VecModel')
 parser.add_argument('--seq_len', type=int, default = 50)
 parser.add_argument('--word_dim', type=int, default = 100)
 parser.add_argument('--num_filters', type=int, default = 100)
@@ -26,9 +26,10 @@ parser.add_argument('--batch_size', type=int, default=32)
 parser.add_argument('--epoch', type=int, default=50)
 args = parser.parse_args()
 
-num,if_stop_word,word_to_vector,seq_len,word_dim,num_filters,l2_num,learning_rate,dropout_conv,filter_sizes, batch_size,epoch = common.load_parameter(args)
-print(num,if_stop_word,word_to_vector,seq_len,word_dim,num_filters,l2_num,learning_rate,dropout_conv,filter_sizes, batch_size,epoch)
+num,if_stop_word,seq_len,word_dim,num_filters,l2_num,learning_rate,dropout_conv,filter_sizes, batch_size,epoch = common.load_parameter(args)
+print(num,if_stop_word,seq_len,word_dim,num_filters,l2_num,learning_rate,dropout_conv,filter_sizes, batch_size,epoch)
 
+word_to_vector="word2vec_"+str(word_dim)+"_"+str(seq_len)+".npy"
 
 warnings.filterwarnings("ignore")
 
@@ -43,7 +44,7 @@ else:
 label, vector = common.word_to_vector('Word2VecModel',data[:num], seq_len, 100, stop_word)
 
 #得到词向量，加载模型为vector
-#vector = numpy.load(word_to_vector)
+vector = numpy.load(word_to_vector)
 print(label.shape, vector.shape)
 
 MODELS={
