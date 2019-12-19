@@ -6,4 +6,4 @@ for seq_len in ["30","50"]:
             for filter_size in ["2,3,4","5,6,7"]:
                 for dropout in ["0.1","0.3","0.5","0.7"]:
                     command="python3 experiment.py --if_stop_word=1 --seq_len=%s --word_dim=%s  --num_filters=%s --dropout_conv=%s --filter_size=%s"%(seq_len,word_dim,num_filters,dropout,filter_size)
-                    os.command(command)
+                    os.system(command)
